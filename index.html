@@ -1,1 +1,428 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>官方网站</title><script type=text/javascript src="http://api.map.baidu.com/api?v=3.0&ak=jcI3Q88g6V99OPBjLryoOqPTtsRdedHA"></script><link href=./static/css/app.446f78b08141000be561ace8151f38da.css rel=stylesheet></head><body data-spy=scroll data-target=#myScrollspy><div id=app></div><script type=text/javascript src=./static/js/manifest.ad977049bf5f2dcd9823.js></script><script type=text/javascript src=./static/js/vendor.25f01b34aed63beb5ec1.js></script><script type=text/javascript src=./static/js/app.d804585ee386e66519bd.js></script></body></html>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河南麦桐文化传媒有限公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 导航样式 */
+        header {
+            background-color: #1e88e5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: static;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f0f0f0;
+        }
+        /* 轮播图样式 */
+        .carousel {
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-caption {
+            color: #fff;
+            text-align: center;
+        }
+        .carousel-caption h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-control {
+            background-color: rgba(255,255,255,0.5);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 20px;
+            font-size: 20px;
+        }
+        /* 分区样式 */
+        section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #1e88e5;
+        }
+        /* 关于我们 */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        .stat-item {
+            text-align: center;
+            margin: 20px;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e88e5;
+            margin-bottom: 10px;
+        }
+        /* 服务内容 */
+        .services {
+            background-color: #ffffff;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            font-size: 40px;
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .service-desc {
+            color: #666;
+        }
+        /* 联系我们 */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .contact-item {
+            margin-bottom: 20px;
+        }
+        .contact-icon {
+            font-size: 30px;
+            color: #1e88e5;
+            margin-bottom: 15px;
+        }
+        .qrcode {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        .qrcode img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        /* 底部 */
+        footer {
+            background-color: #1e88e5;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .carousel {
+                height: 400px;
+            }
+            .carousel-caption h2 {
+                font-size: 24px;
+            }
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="image/logo.png" alt="麦桐文化Logo">
+                    河南麦桐文化
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#services">服务内容</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 轮播图 -->
+    <div class="carousel">
+        <div class="carousel-inner" id="carousel">
+            <div class="carousel-item">
+                <img src="image/banner1.jpg" alt="轮播图1">
+                <div class="overlay">
+                    <div class="carousel-caption">
+                        <h2>专业的文化传媒服务</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="image/banner2.jpg" alt="轮播图2">
+                <div class="overlay">
+                    <div class="carousel-caption">
+                        <h2>创新的营销策划方案</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="image/banner3.jpg" alt="轮播图3">
+                <div class="overlay">
+                    <div class="carousel-caption">
+                        <h2>优质的客户服务体验</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-control" onclick="prevSlide()">❮</button>
+            <button class="carousel-control" onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+    <!-- 关于我们 -->
+    <section id="about">
+        <div class="container">
+            <h2>关于麦桐文化</h2>
+            <div class="about-content">
+                <p>河南麦桐文化传媒作为整合服务全国名优企业，经营河南广电旗下电视、广播及户外媒体资源平台的公司孕育而生。时代开放，麦桐文化传媒顺应了当前中国新媒体融合发展趋势的需要，以媒体为根，以有效传播为本，给媒体和企业之间搭建一座新时代的沟通、互联、发展的新平台。 河南麦桐文化传媒有限公司，是河南新闻出版广电旗下以河南电视台媒体为依托应运而生的一家大型媒体资源运营公司。核心团队前身为河南电视台广告运营、品牌节目操盘的精英强将，具有丰富的媒体操盘运营经验、企业宣传策划等综合服务能力。曾成功为国内大中小型企业提供有效的整合传播服务，并成为经典案例。 麦桐文化传媒以媒体购买经营、广告制作、代理发布的一家大型电视广告机构。</p>
+                <p>公司拥有一批广告人士，可在市场调研，营销策划，广告创意、制作和发布，媒体监测，媒体策划等方面提供全面、独到的服务。是中部大型的电视广告传媒企业，麦辰文化传媒以其良好的社会人脉基础、强劲的资金后备、庞大的媒体资源优势操盘经营河南电视台栏目:《梨园春》、《武林风》、《打鱼晒网》、《百姓调解》等栏目广告及其它特殊广告。 拥有：河南卫视频道《武林风、梨园春、华豫之门》栏目广告、都市频道《都市报道》《打渔晒网》《名嘴K歌秀》、民生频道《民生大参考》《小莉帮忙》《香香美食》、法制频道《法制现场》《晓华探案》《晓华影院》、电视剧频道《剧场》、公共频道《百姓关注，调解》、新农村频道《村长开会》、《九号直播间》等品牌栏目广告…以及河南电视台各频道黄金时段非黄金时间段的优势折扣特殊广告经营权。并拥有央视频道驻河南地区业务代理发布权，以及各地电视台良好的战略合作业务来往。</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5年+</div>
+                        <div>行业经验</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div>成功案例</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div>合作伙伴</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务内容 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>我们的服务</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3 class="service-title">品牌策划</h3>
+                    <p class="service-desc">专业的品牌定位与策划，帮助企业打造独特的品牌形象</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3 class="service-title">整合营销</h3>
+                    <p class="service-desc">全方位的营销策划与执行，提升品牌影响力</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📸</div>
+                    <h3 class="service-title">视觉创意</h3>
+                    <p class="service-desc">优质的视觉设计与制作，展现品牌魅力</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">新媒体运营</h3>
+                    <p class="service-desc">专业的新媒体内容运营，提升品牌传播效果</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact">
+        <div class="container">
+            <h2>联系我们</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>电话</h3>
+                    <p>15890136928</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>邮箱</h3>
+                    <p>gmyanfei@163.com</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>地址</h3>
+                    <p>河南省郑州市新郑市龙湖镇祥云路1号浩创·梧桐郡</p>
+                </div>
+                <div class="contact-item">
+                    <div class="qrcode">
+                        <img src="image/weixin.jpg" alt="微信二维码">
+                    </div>
+                    <h3>微信咨询</h3>
+                    <p>扫码添加微信</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 河南麦桐文化传媒有限公司. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 轮播图逻辑
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const carousel = document.getElementById('carousel');
+        
+        // 自动轮播
+        setInterval(() => {
+            nextSlide();
+        }, 5000);
+        
+        function showSlide(n) {
+            currentSlide = n;
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+            if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // 初始化轮播图
+        showSlide(0);
+    </script>
+</body>
+</html> 
